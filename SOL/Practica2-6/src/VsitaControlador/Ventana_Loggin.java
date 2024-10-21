@@ -37,6 +37,7 @@ public class Ventana_Loggin extends javax.swing.JFrame {
         ChechkBox_Mostrar_Password = new javax.swing.JCheckBox();
         Boton_Loggin = new javax.swing.JButton();
         Campo_Password = new javax.swing.JPasswordField();
+        Boton_Crear_Usuario = new javax.swing.JButton();
 
         jCheckBox1.setText("jCheckBox1");
 
@@ -80,6 +81,8 @@ public class Ventana_Loggin extends javax.swing.JFrame {
             }
         });
 
+        Boton_Crear_Usuario.setText("Crear Usuario");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -99,13 +102,15 @@ public class Ventana_Loggin extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Campo_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Boton_Loggin)
+                                    .addComponent(Campo_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(24, 24, 24)))
                         .addComponent(ChechkBox_Mostrar_Password)))
                 .addContainerGap(60, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Boton_Loggin)
+                .addComponent(Boton_Crear_Usuario)
                 .addGap(178, 178, 178))
         );
         layout.setVerticalGroup(
@@ -124,7 +129,9 @@ public class Ventana_Loggin extends javax.swing.JFrame {
                     .addComponent(Campo_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(32, 32, 32)
                 .addComponent(Boton_Loggin)
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(Boton_Crear_Usuario)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -208,6 +215,7 @@ public class Ventana_Loggin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Boton_Crear_Usuario;
     private javax.swing.JButton Boton_Loggin;
     private javax.swing.JPasswordField Campo_Password;
     private javax.swing.JTextField Campo_Usuario;
