@@ -10,12 +10,17 @@ package VsitaControlador;
  */
 public class Ventana_Bienvenida extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ventana_Bienvenida
-     */
-    public Ventana_Bienvenida() {
+    Ventana_Loggin ventana_loggin;
+    public Ventana_Bienvenida(Ventana_Loggin entrada) {
         initComponents();
+        ventana_loggin = entrada;
+        Tetxo_Bienvenida_Usuario.setText("Usuario " + ventana_loggin.getCampo_Usuario() + " Loggeado" );
     }
+
+    public Ventana_Bienvenida() {
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +31,63 @@ public class Ventana_Bienvenida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Texto_Bienvenida = new javax.swing.JLabel();
+        Tetxo_Bienvenida_Usuario = new javax.swing.JLabel();
+        Boton_CerrarSesion = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Benvenid@");
+
+        Texto_Bienvenida.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Texto_Bienvenida.setText("BIenvenid@");
+
+        Tetxo_Bienvenida_Usuario.setText("jLabel2");
+
+        Boton_CerrarSesion.setText("Cerrar Sesion");
+        Boton_CerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_CerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(162, 162, 162)
+                .addComponent(Boton_CerrarSesion)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(117, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Texto_Bienvenida)
+                        .addGap(143, 143, 143))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(Tetxo_Bienvenida_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(Texto_Bienvenida)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addComponent(Tetxo_Bienvenida_Usuario)
+                .addGap(30, 30, 30)
+                .addComponent(Boton_CerrarSesion)
+                .addGap(39, 39, 39))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Boton_CerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_CerrarSesionActionPerformed
+        this.setVisible(false);
+        ventana_loggin.setVisible(true);
+    }//GEN-LAST:event_Boton_CerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +125,8 @@ public class Ventana_Bienvenida extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Boton_CerrarSesion;
+    private javax.swing.JLabel Tetxo_Bienvenida_Usuario;
+    private javax.swing.JLabel Texto_Bienvenida;
     // End of variables declaration//GEN-END:variables
 }

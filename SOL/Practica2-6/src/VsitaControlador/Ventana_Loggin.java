@@ -4,15 +4,18 @@
  */
 package VsitaControlador;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
+
+
 /**
  *
  * @author DAM2_09
  */
 public class Ventana_Loggin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ventana_Loggin
-     */
+   
     public Ventana_Loggin() {
         initComponents();
     }
@@ -144,10 +147,22 @@ public class Ventana_Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_ChechkBox_Mostrar_PasswordActionPerformed
 
     private void Boton_LogginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_LogginActionPerformed
-        this.setVisible(false);
-
+        if(Campo_Usuario.getText().equalsIgnoreCase("javier") || Campo_Password.getText().equalsIgnoreCase("1234")){
+             this.setVisible(false);
+        Ventana_Bienvenida Ventana_Nueva = new Ventana_Bienvenida(this);
+        Ventana_Nueva.setVisible(true);
+        Campo_Usuario.setText(null);
+        Campo_Password.setText(null);
+        }else{
+            JOptionPane.showMessageDialog(null, "Error al iniciar sesion");
+        }
+       
 
     }//GEN-LAST:event_Boton_LogginActionPerformed
+
+    public String getCampo_Usuario() {
+        return Campo_Usuario.getText();
+    }
 
     private void Campo_PasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_PasswordActionPerformed
 
