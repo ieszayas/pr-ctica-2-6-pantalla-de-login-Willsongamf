@@ -4,6 +4,7 @@
  */
 package VsitaControlador;
 
+import IO.BaseDatos_Conexion;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -17,6 +18,7 @@ public class Ventana_Loggin extends javax.swing.JFrame {
 
    
     public Ventana_Loggin() {
+        BaseDatos_Conexion.inicializarBaseDatos();
         initComponents();
     }
 
@@ -82,6 +84,11 @@ public class Ventana_Loggin extends javax.swing.JFrame {
         });
 
         Boton_Crear_Usuario.setText("Crear Usuario");
+        Boton_Crear_Usuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_Crear_UsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -178,6 +185,11 @@ public class Ventana_Loggin extends javax.swing.JFrame {
     private void Campo_PasswordKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Campo_PasswordKeyReleased
 
     }//GEN-LAST:event_Campo_PasswordKeyReleased
+
+    private void Boton_Crear_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Crear_UsuarioActionPerformed
+        Ventana_Crear_Usuairo ventana_crear_usuario = new Ventana_Crear_Usuairo();
+        ventana_crear_usuario.setVisible(true);
+    }//GEN-LAST:event_Boton_Crear_UsuarioActionPerformed
 
     /**
      * @param args the command line arguments

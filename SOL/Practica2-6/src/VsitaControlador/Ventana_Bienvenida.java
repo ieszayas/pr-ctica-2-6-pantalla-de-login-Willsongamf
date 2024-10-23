@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package VsitaControlador;
 
-/**
- *
- * @author DAM2_09
- */
 public class Ventana_Bienvenida extends javax.swing.JFrame {
 
     Ventana_Loggin ventana_loggin;
