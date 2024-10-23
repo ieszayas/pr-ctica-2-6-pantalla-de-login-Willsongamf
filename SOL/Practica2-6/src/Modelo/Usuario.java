@@ -24,7 +24,7 @@ public class Usuario {
     public Usuario(String usuario, String contraseña) {
         this.usuario = usuario;
         this.contraseña = contraseña;
-        int id = id_s;
+         this.id = id_s;
         id_s++;
         
         

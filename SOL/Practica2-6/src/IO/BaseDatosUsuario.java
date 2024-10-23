@@ -18,6 +18,7 @@ public class BaseDatosUsuario {
             
             while(rst.next()){
                 user = new Usuario(rst.getInt("ID"),rst.getString("Usuario"),rst.getString("Contraseña"));
+                existe++;
             }
             
             if(existe == 0){
@@ -31,7 +32,7 @@ public class BaseDatosUsuario {
         return user;
     }
 
-    public static void crearUsuario(Usuario usuario) {
+    public static boolean crearUsuario(Usuario usuario) {
        Connection con = BaseDatos_Conexion.getConnection();
         try{
             String consulta = "Insert into usuario values (?,?,?)";
@@ -44,10 +45,12 @@ public class BaseDatosUsuario {
              
         }catch(SQLException sql){
             System.out.println("Error al crear un usuario" + sql.getMessage());
+            return false;
         }
+        return true;
     }
 
-    public static void crearUsuarioDatosOpcionales(Usuario usuario) {
+    public static boolean crearUsuarioDatosOpcionales(Usuario usuario) {
           Connection con = BaseDatos_Conexion.getConnection();
         try{
             String consulta = "Insert into usuariodatosopcionales values (?,?,?,?,?);";
@@ -62,7 +65,9 @@ public class BaseDatosUsuario {
              
         }catch(SQLException sql){
             System.out.println("Error al crear un usuario" + sql.getMessage());
+            return false;
         }
+        return true;
     }
 
     public static int obtenerIDUsuario() {
@@ -73,7 +78,7 @@ public class BaseDatosUsuario {
             ResultSet rst = pstm.executeQuery();
             
             while(rst.next()){
-                return rst.getInt("ID");
+                return rst.getInt(1);
             }
         } catch (SQLException e) {
             System.out.println("Error al obtner el id usuairo " + e.getMessage());

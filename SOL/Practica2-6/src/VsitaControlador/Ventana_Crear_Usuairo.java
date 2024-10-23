@@ -14,11 +14,16 @@ import javax.swing.JOptionPane;
  */
 public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Ventana_Crear_Usuairo
-     */
-    public Ventana_Crear_Usuairo() {
+    Ventana_Loggin ventana_loggin;
+
+    public Ventana_Crear_Usuairo(Ventana_Loggin entrada) {
         initComponents();
+        ventana_loggin = entrada;
+        ventana_loggin.setVisible(false);
+
+    }
+
+    public Ventana_Crear_Usuairo() {
     }
 
     /**
@@ -223,23 +228,28 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
         if (CheckBox_AgregarOpcionales.isSelected()) {
             if (comprobarCamposAgracion()) {
                 Usuario user = new Usuario(Campo_Usuario.getText(), Campo_Contraeña.getText(), Campo_Nombre.getText(), Campo_Apellido.getText(), Campo_Fecha.getText(), Campo_Correo.getText());
-                BaseDatosUsuario.crearUsuarioDatosOpcionales(user);
+                if (!BaseDatosUsuario.crearUsuarioDatosOpcionales(user)) {
+                    JOptionPane.showMessageDialog(null, "El Usuario ya existe");
+                    return;
+                }
                 return;
             } else {
                 JOptionPane.showMessageDialog(null, "No todos los campos opcionales se han rellenado ");
             }
         }
 
-        Usuario user = new Usuario(Campo_Usuario.getText(),Campo_Contraeña.getText());
-        BaseDatosUsuario.crearUsuario(user);
+        Usuario user = new Usuario(Campo_Usuario.getText(), Campo_Contraeña.getText());
+        if (!BaseDatosUsuario.crearUsuario(user)) {
+            JOptionPane.showMessageDialog(null, "El Usuario ya existe");
+        }
         this.setVisible(false);
+        ventana_loggin.setVisible(true);
     }//GEN-LAST:event_Boton_AgregarActionPerformed
 
     private boolean comporbraContraseña() {
-        for (int i = 0; i < Campo_Contraeña.getText().length(); i++) {
-            if (Campo_Contraeña.getText().charAt(i) != Campo_Contraseña_Validacion.getText().charAt(i)) {
-                return false;
-            }
+
+        if (!Campo_Contraeña.getText().equals(Campo_Contraseña_Validacion.getText())) {
+            return false;
         }
         return true;
     }
@@ -269,6 +279,7 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
 
     private void Boton_CerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_CerrarActionPerformed
         this.setVisible(false);
+        ventana_loggin.setVisible(true);
     }//GEN-LAST:event_Boton_CerrarActionPerformed
 
     private boolean comprobarCamposAgracion() {

@@ -4,7 +4,9 @@
  */
 package VsitaControlador;
 
+import IO.BaseDatosUsuario;
 import IO.BaseDatos_Conexion;
+import Modelo.Usuario;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -44,6 +46,7 @@ public class Ventana_Loggin extends javax.swing.JFrame {
         jCheckBox1.setText("jCheckBox1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Loggin");
 
         Texto_Loggin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         Texto_Loggin.setText("Por favor introduzca sus credemciales para acceder");
@@ -161,19 +164,25 @@ public class Ventana_Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_ChechkBox_Mostrar_PasswordActionPerformed
 
     private void Boton_LogginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_LogginActionPerformed
-        if(Campo_Usuario.getText().equalsIgnoreCase("javier") || Campo_Password.getText().equalsIgnoreCase("1234")){
+
+        try{
+          Usuario user = BaseDatosUsuario.obtenerUsuario(Campo_Usuario.getText(),String.valueOf(Campo_Password.getPassword()) );
              this.setVisible(false);
-        Ventana_Bienvenida Ventana_Nueva = new Ventana_Bienvenida(this);
+        Ventana_Bienvenida Ventana_Nueva = new Ventana_Bienvenida(user,this);
         Ventana_Nueva.setVisible(true);
         Campo_Usuario.setText(null);
         Campo_Password.setText(null);
-        }else{
-            JOptionPane.showMessageDialog(null, "Error al iniciar sesion");
+        
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "El usuario ya existe");
+            return;
         }
-       
+        
+      
 
     }//GEN-LAST:event_Boton_LogginActionPerformed
 
+    
     public String getCampo_Usuario() {
         return Campo_Usuario.getText();
     }
@@ -187,7 +196,7 @@ public class Ventana_Loggin extends javax.swing.JFrame {
     }//GEN-LAST:event_Campo_PasswordKeyReleased
 
     private void Boton_Crear_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Crear_UsuarioActionPerformed
-        Ventana_Crear_Usuairo ventana_crear_usuario = new Ventana_Crear_Usuairo();
+        Ventana_Crear_Usuairo ventana_crear_usuario = new Ventana_Crear_Usuairo(this);
         ventana_crear_usuario.setVisible(true);
     }//GEN-LAST:event_Boton_Crear_UsuarioActionPerformed
 

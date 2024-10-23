@@ -1,13 +1,17 @@
 
 package VsitaControlador;
 
+import Modelo.Usuario;
+
 public class Ventana_Bienvenida extends javax.swing.JFrame {
 
+    Usuario user;
     Ventana_Loggin ventana_loggin;
-    public Ventana_Bienvenida(Ventana_Loggin entrada) {
+    public Ventana_Bienvenida(Usuario user,Ventana_Loggin entrada) {
         initComponents();
+        this.user = user;
         ventana_loggin = entrada;
-        Tetxo_Bienvenida_Usuario.setText("Usuario " + ventana_loggin.getCampo_Usuario() + " Loggeado" );
+        Tetxo_Bienvenida_Usuario.setText("Usuario " + this.user.getUsuario() + " Loggeado" );
     }
 
     public Ventana_Bienvenida() {
@@ -47,28 +51,25 @@ public class Ventana_Bienvenida extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Texto_Bienvenida)
+                .addGap(143, 143, 143))
             .addGroup(layout.createSequentialGroup()
                 .addGap(162, 162, 162)
-                .addComponent(Boton_CerrarSesion)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Texto_Bienvenida)
-                        .addGap(143, 143, 143))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(Tetxo_Bienvenida_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))))
+                    .addComponent(Tetxo_Bienvenida_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Boton_CerrarSesion))
+                .addGap(0, 49, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(Texto_Bienvenida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
                 .addComponent(Tetxo_Bienvenida_Usuario)
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(Boton_CerrarSesion)
                 .addGap(39, 39, 39))
         );
