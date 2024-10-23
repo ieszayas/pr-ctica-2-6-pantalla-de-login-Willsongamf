@@ -38,7 +38,7 @@ public class BaseDatos_Conexion {
 
             String consulta_4 = "Create Table IF NOT EXISTS Usuario(\n"
                     + "ID int ,\n"
-                    + "Usuario varchar(20),\n"
+                    + "Usuario varchar(20) Unique,\n"
                     + "Contraseña varchar(20),\n"
                     + "constraint pk_jugXtor primary key (ID,Usuario) );";
             PreparedStatement pstm4 = con.prepareStatement(consulta_4);
