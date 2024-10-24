@@ -56,24 +56,6 @@
                                           <Component id="Campo_Correo" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="Texto_Creacion_User" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="Texto_Creacion_Contraseña" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Component id="Texto_Creacion_Contraseña_Validacion" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="Campo_Usuario" max="32767" attributes="0"/>
-                                          <Component id="Campo_Contraseña_Validacion" max="32767" attributes="0"/>
-                                          <Component id="Campo_Contraeña" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                           </Group>
@@ -81,6 +63,25 @@
                               <Component id="Boton_Cerrar" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="Boton_Agregar" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="Texto_Creacion_User" min="-2" max="-2" attributes="0"/>
+                                          <Component id="Texto_Creacion_Contraseña" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="Texto_Creacion_Contraseña_Validacion" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="Campo_Contraseña" max="32767" attributes="0"/>
+                                  <Component id="Campo_Usuario" max="32767" attributes="0"/>
+                                  <Component id="Campo_Contraseña_Validacion" pref="157" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -106,14 +107,20 @@
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Texto_Creacion_Contraseña" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Campo_Contraeña" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="Campo_Contraseña" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Campo_Contraseña_Validacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Texto_Creacion_Contraseña_Validacion" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="Texto_Creacion_Contraseña_Validacion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="Campo_Contraseña_Validacion" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="CheckBox_AgregarOpcionales" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
@@ -159,10 +166,6 @@
     </Component>
     <Component class="javax.swing.JTextField" name="Campo_Usuario">
     </Component>
-    <Component class="javax.swing.JTextField" name="Campo_Contrae&#xf1;a">
-    </Component>
-    <Component class="javax.swing.JTextField" name="Campo_Contrase&#xf1;a_Validacion">
-    </Component>
     <Component class="javax.swing.JLabel" name="Texto_Creacion_User">
       <Properties>
         <Property name="text" type="java.lang.String" value="Usuario"/>
@@ -205,6 +208,9 @@
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Campo_CorreoKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="Boton_Cerrar">
       <Properties>
@@ -252,6 +258,13 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CheckBox_AgregarOpcionalesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="Campo_Contrase&#xf1;a">
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="Campo_Contrase&#xf1;a_Validacion">
+      <Events>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Campo_Contrase&#xf1;a_ValidacionKeyReleased"/>
       </Events>
     </Component>
   </SubComponents>

@@ -35,8 +35,9 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public Usuario(String usuario, String contraseña,String nombre, String apellidos, String Fecha_nacimiento, String Correo) {
-        this(usuario,contraseña);
+   
+    
+    public void setAtributosOpcionales(String nombre, String apellidos, String Fecha_nacimiento, String Correo){
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.Fecha_nacimiento = Fecha_nacimiento;

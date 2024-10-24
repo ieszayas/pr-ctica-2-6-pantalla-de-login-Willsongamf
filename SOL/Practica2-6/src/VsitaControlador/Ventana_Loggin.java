@@ -174,7 +174,7 @@ public class Ventana_Loggin extends javax.swing.JFrame {
         Campo_Password.setText(null);
         
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "El usuario ya existe");
+            JOptionPane.showMessageDialog(null, "El usuario no existe");
             return;
         }
         
@@ -198,6 +198,8 @@ public class Ventana_Loggin extends javax.swing.JFrame {
     private void Boton_Crear_UsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Crear_UsuarioActionPerformed
         Ventana_Crear_Usuairo ventana_crear_usuario = new Ventana_Crear_Usuairo(this);
         ventana_crear_usuario.setVisible(true);
+        Campo_Usuario.setText(null);
+        Campo_Password.setText(null);
     }//GEN-LAST:event_Boton_Crear_UsuarioActionPerformed
 
     /**
