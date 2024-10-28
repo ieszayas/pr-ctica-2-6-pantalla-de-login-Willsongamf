@@ -344,18 +344,18 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
     }//GEN-LAST:event_Campo_Contraseña_ValidacionKeyReleased
 
     private boolean comprobarCamposAgracion() {
-       
+
         String arraycampos[] = new String[4];
         arraycampos[0] = Campo_Nombre.getText();
         arraycampos[1] = Campo_Apellido.getText();
-        try{
-        DateFormat df = new SimpleDateFormat(jDateChooser_Fecha.getDateFormatString());
-        arraycampos[2] = df.format(jDateChooser_Fecha.getDate());
-        }catch(Exception e){
-            System.out.println("Error al isnertar la fecha " +e.getMessage());
+        try {
+            DateFormat df = new SimpleDateFormat(jDateChooser_Fecha.getDateFormatString());
+            arraycampos[2] = df.format(jDateChooser_Fecha.getDate());
+        } catch (Exception e) {
+            System.out.println("Error al insertar la fecha " + e.getMessage());
             return false;
         }
-        
+
         arraycampos[3] = Campo_Correo.getText();
 
         for (int i = 0; i < arraycampos.length; i++) {
