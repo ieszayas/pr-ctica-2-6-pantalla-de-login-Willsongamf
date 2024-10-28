@@ -1,7 +1,9 @@
 
 package VsitaControlador;
 
+import IO.BaseDatosUsuario;
 import Modelo.Usuario;
+import javax.swing.JOptionPane;
 
 public class Ventana_Bienvenida extends javax.swing.JFrame {
 
@@ -31,6 +33,9 @@ public class Ventana_Bienvenida extends javax.swing.JFrame {
         Texto_Bienvenida = new javax.swing.JLabel();
         Tetxo_Bienvenida_Usuario = new javax.swing.JLabel();
         Boton_CerrarSesion = new javax.swing.JButton();
+        Boton_Modificar_Contraseña = new javax.swing.JButton();
+        Campo_Contraseña_Modificada = new javax.swing.JPasswordField();
+        Check_Box_Contrseña_Modificada = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Benvenid@");
@@ -47,31 +52,58 @@ public class Ventana_Bienvenida extends javax.swing.JFrame {
             }
         });
 
+        Boton_Modificar_Contraseña.setText("Modificar Contraseña");
+        Boton_Modificar_Contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_Modificar_ContraseñaActionPerformed(evt);
+            }
+        });
+
+        Check_Box_Contrseña_Modificada.setText("Mostrar");
+        Check_Box_Contrseña_Modificada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Check_Box_Contrseña_ModificadaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Texto_Bienvenida)
-                .addGap(143, 143, 143))
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Tetxo_Bienvenida_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Boton_CerrarSesion))
-                .addGap(0, 49, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(Boton_Modificar_Contraseña)
+                            .addComponent(Boton_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Tetxo_Bienvenida_Usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(Campo_Contraseña_Modificada, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Check_Box_Contrseña_Modificada))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(Texto_Bienvenida)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(16, 16, 16)
                 .addComponent(Texto_Bienvenida)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(Tetxo_Bienvenida_Usuario)
-                .addGap(29, 29, 29)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(Boton_CerrarSesion)
-                .addGap(39, 39, 39))
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Campo_Contraseña_Modificada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Check_Box_Contrseña_Modificada))
+                .addGap(18, 18, 18)
+                .addComponent(Boton_Modificar_Contraseña)
+                .addGap(21, 21, 21))
         );
 
         pack();
@@ -82,6 +114,24 @@ public class Ventana_Bienvenida extends javax.swing.JFrame {
         this.setVisible(false);
         ventana_loggin.setVisible(true);
     }//GEN-LAST:event_Boton_CerrarSesionActionPerformed
+
+    private void Boton_Modificar_ContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Modificar_ContraseñaActionPerformed
+        if(String.valueOf(Campo_Contraseña_Modificada.getPassword()).isEmpty()){
+            JOptionPane.showMessageDialog(null, "Contrseña Vacia");
+            return;
+        }
+        user.setContraseña(String.valueOf(Campo_Contraseña_Modificada.getPassword()));
+        BaseDatosUsuario.updateUsuario(user);
+        JOptionPane.showMessageDialog(null, "Contraseña Modificada");
+    }//GEN-LAST:event_Boton_Modificar_ContraseñaActionPerformed
+
+    private void Check_Box_Contrseña_ModificadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Check_Box_Contrseña_ModificadaActionPerformed
+        if(Check_Box_Contrseña_Modificada.isSelected()){
+            Campo_Contraseña_Modificada.setEchoChar((char)0);
+        }else{
+            Campo_Contraseña_Modificada.setEchoChar('*');
+        }
+    }//GEN-LAST:event_Check_Box_Contrseña_ModificadaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +170,9 @@ public class Ventana_Bienvenida extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Boton_CerrarSesion;
+    private javax.swing.JButton Boton_Modificar_Contraseña;
+    private javax.swing.JPasswordField Campo_Contraseña_Modificada;
+    private javax.swing.JCheckBox Check_Box_Contrseña_Modificada;
     private javax.swing.JLabel Tetxo_Bienvenida_Usuario;
     private javax.swing.JLabel Texto_Bienvenida;
     // End of variables declaration//GEN-END:variables

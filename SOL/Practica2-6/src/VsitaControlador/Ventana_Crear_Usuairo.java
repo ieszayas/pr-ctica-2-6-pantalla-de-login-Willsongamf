@@ -7,6 +7,8 @@ package VsitaControlador;
 import IO.BaseDatosUsuario;
 import Modelo.Usuario;
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.border.Border;
@@ -21,7 +23,7 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
 
     Border borde_rojo = BorderFactory.createLineBorder(Color.red);
     Border borde_green = BorderFactory.createLineBorder(Color.green);
-     Usuario user;
+    Usuario user;
 
     public Ventana_Crear_Usuairo(Ventana_Loggin entrada) {
         initComponents();
@@ -51,7 +53,6 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
         Tetxo_Agregar_Opcional = new javax.swing.JLabel();
         Campo_Nombre = new javax.swing.JTextField();
         Campo_Apellido = new javax.swing.JTextField();
-        Campo_Fecha = new javax.swing.JTextField();
         Campo_Correo = new javax.swing.JTextField();
         Boton_Cerrar = new javax.swing.JButton();
         Boton_Agregar = new javax.swing.JButton();
@@ -62,6 +63,7 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
         CheckBox_AgregarOpcionales = new javax.swing.JCheckBox();
         Campo_Contraseña = new javax.swing.JPasswordField();
         Campo_Contraseña_Validacion = new javax.swing.JPasswordField();
+        jDateChooser_Fecha = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear Usuario");
@@ -80,8 +82,6 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
         Campo_Nombre.setEnabled(false);
 
         Campo_Apellido.setEnabled(false);
-
-        Campo_Fecha.setEnabled(false);
 
         Campo_Correo.setEnabled(false);
         Campo_Correo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -129,6 +129,9 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
             }
         });
 
+        jDateChooser_Fecha.setDateFormatString("yyyy MM dd");
+        jDateChooser_Fecha.setEnabled(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,24 +146,6 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(19, 19, 19)
-                                        .addComponent(Texto_Creacion_Usuario))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(Texto_Creacion_Nombre)
-                                            .addComponent(Texto_Creacion_Apellido)
-                                            .addComponent(Texto_Creacion_Fecha)
-                                            .addComponent(Texto_Creacion_Correo))
-                                        .addGap(72, 72, 72)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(Campo_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                                            .addComponent(Campo_Apellido)
-                                            .addComponent(Campo_Fecha)
-                                            .addComponent(Campo_Correo))))
-                                .addGap(54, 54, 54))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Boton_Cerrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -178,7 +163,23 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
                                     .addComponent(Campo_Contraseña)
                                     .addComponent(Campo_Usuario)
                                     .addComponent(Campo_Contraseña_Validacion, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(Texto_Creacion_Usuario))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Texto_Creacion_Nombre)
+                                    .addComponent(Texto_Creacion_Apellido)
+                                    .addComponent(Texto_Creacion_Fecha)
+                                    .addComponent(Texto_Creacion_Correo))
+                                .addGap(72, 72, 72)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jDateChooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(Campo_Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                                        .addComponent(Campo_Apellido)
+                                        .addComponent(Campo_Correo))))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CheckBox_AgregarOpcionales)))
@@ -212,19 +213,18 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Tetxo_Agregar_Opcional)
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Campo_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Texto_Creacion_Nombre))
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Campo_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Texto_Creacion_Apellido))
-                        .addGap(26, 26, 26)
-                        .addComponent(Campo_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Texto_Creacion_Fecha))
-                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Campo_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Texto_Creacion_Nombre))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Campo_Apellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Texto_Creacion_Apellido))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Texto_Creacion_Fecha)
+                    .addComponent(jDateChooser_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Campo_Correo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Texto_Creacion_Correo))
@@ -257,7 +257,8 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
                 return;
 
             } else {
-                JOptionPane.showMessageDialog(null, "No todos los campos opcionales se han rellenado o el correo no hes valido");
+                JOptionPane.showMessageDialog(null, "No todos los campos opcionales se han rellenado o no estan validados");
+                return;
             }
         }
 
@@ -270,7 +271,7 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
 
     public boolean crearUsuario() {
 
-         user = new Usuario(Campo_Usuario.getText(), String.valueOf(Campo_Contraseña.getPassword()));
+        user = new Usuario(Campo_Usuario.getText(), String.valueOf(Campo_Contraseña.getPassword()));
         if (!BaseDatosUsuario.crearUsuario(user)) {
             JOptionPane.showMessageDialog(null, "El Usuario ya existe");
             return false;
@@ -280,8 +281,9 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
     }
 
     private boolean crearUsuarioDatosOpcionales() {
+        DateFormat df = new SimpleDateFormat(jDateChooser_Fecha.getDateFormatString());
         if (crearUsuario()) {
-             user.setAtributosOpcionales(Campo_Nombre.getText(), Campo_Apellido.getText(), Campo_Fecha.getText(), Campo_Correo.getText());
+            user.setAtributosOpcionales(Campo_Nombre.getText(), Campo_Apellido.getText(), df.format(jDateChooser_Fecha.getDate()), Campo_Correo.getText());
             BaseDatosUsuario.crearUsuarioDatosOpcionales(user);
             return true;
         }
@@ -299,7 +301,7 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
         if (CheckBox_AgregarOpcionales.isSelected()) {
             Campo_Nombre.setEnabled(true);
             Campo_Apellido.setEnabled(true);
-            Campo_Fecha.setEnabled(true);
+            jDateChooser_Fecha.setEnabled(true);
             Campo_Correo.setEnabled(true);
             Tetxo_Agregar_Opcional.setEnabled(true);
             Texto_Creacion_Nombre.setEnabled(true);
@@ -309,7 +311,7 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
         } else {
             Campo_Nombre.setEnabled(false);
             Campo_Apellido.setEnabled(false);
-            Campo_Fecha.setEnabled(false);
+            jDateChooser_Fecha.setEnabled(false);
             Campo_Correo.setEnabled(false);
             Tetxo_Agregar_Opcional.setEnabled(false);
             Texto_Creacion_Nombre.setEnabled(false);
@@ -342,10 +344,18 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
     }//GEN-LAST:event_Campo_Contraseña_ValidacionKeyReleased
 
     private boolean comprobarCamposAgracion() {
+       
         String arraycampos[] = new String[4];
         arraycampos[0] = Campo_Nombre.getText();
         arraycampos[1] = Campo_Apellido.getText();
-        arraycampos[2] = Campo_Fecha.getText();
+        try{
+        DateFormat df = new SimpleDateFormat(jDateChooser_Fecha.getDateFormatString());
+        arraycampos[2] = df.format(jDateChooser_Fecha.getDate());
+        }catch(Exception e){
+            System.out.println("Error al isnertar la fecha " +e.getMessage());
+            return false;
+        }
+        
         arraycampos[3] = Campo_Correo.getText();
 
         for (int i = 0; i < arraycampos.length; i++) {
@@ -353,9 +363,10 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
                 return false;
             }
         }
-        if(Campo_Correo.getBorder().equals(borde_rojo) ){
-         return false;   
+        if (Campo_Correo.getBorder().equals(borde_rojo)) {
+            return false;
         }
+
         return true;
     }
 
@@ -401,7 +412,6 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
     private javax.swing.JPasswordField Campo_Contraseña;
     private javax.swing.JPasswordField Campo_Contraseña_Validacion;
     private javax.swing.JTextField Campo_Correo;
-    private javax.swing.JTextField Campo_Fecha;
     private javax.swing.JTextField Campo_Nombre;
     private javax.swing.JTextField Campo_Usuario;
     private javax.swing.JCheckBox CheckBox_AgregarOpcionales;
@@ -414,6 +424,7 @@ public class Ventana_Crear_Usuairo extends javax.swing.JFrame {
     private javax.swing.JLabel Texto_Creacion_Nombre;
     private javax.swing.JLabel Texto_Creacion_User;
     private javax.swing.JLabel Texto_Creacion_Usuario;
+    private com.toedter.calendar.JDateChooser jDateChooser_Fecha;
     private javax.swing.JSeparator jSeparator1;
     // End of variables declaration//GEN-END:variables
 }

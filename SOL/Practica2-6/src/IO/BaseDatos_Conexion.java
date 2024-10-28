@@ -1,7 +1,11 @@
 package IO;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.*;
 import java.sql.SQLException;
+import java.util.Properties;
 
 public class BaseDatos_Conexion {
 
@@ -13,16 +17,38 @@ public class BaseDatos_Conexion {
     public static Connection getConnection() {
         if (con == null) {
             try {
-                String cadena_conexion = "jdbc:mysql://localhost:3306/";
-                String usuario = "root";
+
+                Properties properties = new Properties();
+
+                properties.load(new FileInputStream(new File("./config.properties")));
+
+                String cadena_conexion = String.valueOf(properties.get("conexion"));
+
+                String usuario = String.valueOf(properties.get("user"));
+
                 String contraseña = null;
+
+                // TODO Auto-generated catch block
                 con = DriverManager.getConnection(cadena_conexion, usuario, contraseña);
-            } catch (SQLException sql) {
-                System.out.println("Error: Fallo de conexion interna " + sql.getMessage());
+            } catch (IOException io) {
+                System.out.println("Error: Fallo de conexion interna " + io.getMessage());
+            } catch (SQLException e) {
+                System.out.println("Error al Conectar la Base de Datos" + e.getMessage());
             }
         }
 
         return con;
+    }
+
+    public static void cerrarConexxion() {
+        if (con != null) {
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println("Error al cerrar conexion " + e.getMessage());
+            }
+
+        }
     }
 
     public static void inicializarBaseDatos() {
@@ -38,9 +64,9 @@ public class BaseDatos_Conexion {
 
             String consulta_4 = "Create Table IF NOT EXISTS Usuario(\n"
                     + "ID int ,\n"
-                    + "Usuario varchar(20) Unique,\n"
+                    + "N_Usuario varchar(20) Unique,\n"
                     + "Contraseña varchar(20),\n"
-                    + "constraint pk_jugXtor primary key (ID,Usuario) );";
+                    + "constraint pk_jugXtor primary key (ID,N_Usuario) );";
             PreparedStatement pstm4 = con.prepareStatement(consulta_4);
             pstm4.executeUpdate();
 

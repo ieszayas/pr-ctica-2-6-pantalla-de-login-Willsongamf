@@ -235,6 +235,7 @@ public class Ventana_Loggin extends javax.swing.JFrame {
                 new Ventana_Loggin().setVisible(true);
             }
         });
+        BaseDatos_Conexion.cerrarConexxion();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

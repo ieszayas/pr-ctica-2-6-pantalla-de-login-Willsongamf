@@ -10,14 +10,14 @@ public class BaseDatosUsuario {
         Usuario user = null;
         int existe = 0;
         try {
-            String consulta = "SELECT * from usuario WHERE usuario.Usuario = ? and usuario.Contraseña = ?; ";
+            String consulta = "SELECT * from usuario WHERE usuario.N_Usuario = ? and usuario.Contraseña = ?; ";
             PreparedStatement pstm = con.prepareStatement(consulta);
             pstm.setString(1, nombre);
             pstm.setString(2, contraseña);
            ResultSet rst = pstm.executeQuery();
             
             while(rst.next()){
-                user = new Usuario(rst.getInt("ID"),rst.getString("Usuario"),rst.getString("Contraseña"));
+                user = new Usuario(rst.getInt("ID"),rst.getString("N_Usuario"),rst.getString("Contraseña"));
                 existe++;
             }
             
@@ -30,6 +30,21 @@ public class BaseDatosUsuario {
         }
 
         return user;
+    }
+    
+    public static void updateUsuario(Usuario user){
+               Connection con = BaseDatos_Conexion.getConnection();
+               
+              try{
+                  String consulta ="UPDATE usuario SET N_Usuario = ?, Contraseña = ? WHERE usuario.ID = ?; ";
+                  PreparedStatement pstm = con.prepareStatement(consulta);
+            pstm.setInt(3, user.getId());
+            pstm.setString(1, user.getUsuario());
+             pstm.setString(2, user.getContraseña());
+             pstm.executeUpdate();
+              }catch(SQLException e){
+                  System.out.println("Error al modificar un usuario " + e.getMessage());
+              }
     }
 
     public static boolean crearUsuario(Usuario usuario) {
